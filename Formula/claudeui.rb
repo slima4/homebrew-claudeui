@@ -34,7 +34,7 @@ class Claudeui < Formula
     (bin/"claude-ui-setup").write <<~EOS
       #!/bin/bash
       # Run the installer to configure statusline, hooks, and commands
-      export INSTALL_DIR="#{libexec}"
+      export INSTALL_DIR="#{HOMEBREW_PREFIX}/opt/claudeui/libexec"
       exec bash "#{libexec}/install.sh" "$@"
     EOS
   end
