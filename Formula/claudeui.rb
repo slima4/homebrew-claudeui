@@ -13,9 +13,15 @@ class Claudeui < Formula
     libexec.install Dir["widgets"] if File.directory?("widgets")
     libexec.install "install.sh"
     libexec.install "uninstall.sh" if File.exist?("uninstall.sh")
-    libexec.install "claude-ui-mode.sh" if File.exist?("claude-ui-mode.sh")
+    libexec.install "claude-ui-mode.py" if File.exist?("claude-ui-mode.py")
 
     # Create wrapper scripts
+    (bin/"claude-ui-mode").write <<~EOS
+      #!/bin/bash
+      exec python3 "#{libexec}/claude-ui-mode.py" "$@"
+    EOS
+
+
     (bin/"claude-ui-monitor").write <<~EOS
       #!/bin/bash
       exec python3 "#{libexec}/claude-code-monitor/monitor.py" "$@"
@@ -63,6 +69,7 @@ class Claudeui < Formula
         claude-ui-monitor       # live dashboard in a second terminal
         claude-stats            # post-session analytics
         claude-sessions list    # browse all sessions
+        claude-ui-mode custom   # configure statusline components
     EOS
   end
 
