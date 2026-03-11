@@ -1,7 +1,7 @@
-class Claudeui < Formula
+class ClaudeTui < Formula
   desc "Real-time statusline, live monitor, and session analytics for Claude Code"
-  homepage "https://slima4.github.io/claudeui/"
-  url "https://github.com/slima4/claudeui/archive/refs/tags/v0.2.1.tar.gz"
+  homepage "https://slima4.github.io/claude-tui/"
+  url "https://github.com/slima4/claude-tui/archive/refs/tags/v0.2.1.tar.gz"
   sha256 "20ac63c63d0c069647b81087d248f3b9ed4c36155e0a19a09e1fada6311d9b42"
   license "MIT"
 
@@ -40,14 +40,14 @@ class Claudeui < Formula
     (bin/"claude-ui-setup").write <<~EOS
       #!/bin/bash
       # Run the installer to configure statusline, hooks, and commands
-      export INSTALL_DIR="#{HOMEBREW_PREFIX}/opt/claudeui/libexec"
+      export INSTALL_DIR="#{HOMEBREW_PREFIX}/opt/claude-tui/libexec"
       exec bash "#{libexec}/install.sh" "$@"
     EOS
 
     (bin/"claude-ui-uninstall").write <<~EOS
       #!/bin/bash
       # Clean Claude Code settings before brew uninstall
-      export INSTALL_DIR="#{HOMEBREW_PREFIX}/opt/claudeui/libexec"
+      export INSTALL_DIR="#{HOMEBREW_PREFIX}/opt/claude-tui/libexec"
       exec bash "#{libexec}/uninstall.sh" "$@"
     EOS
   end
@@ -61,7 +61,7 @@ class Claudeui < Formula
       Before uninstalling, clean Claude Code settings first:
 
         claude-ui-uninstall     # removes statusline, hooks, commands
-        brew uninstall claudeui
+        brew uninstall claude-tui
 
       After setup:
 

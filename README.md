@@ -1,12 +1,12 @@
-# Homebrew Tap for ClaudeUI
+# Homebrew Tap for ClaudeTUI
 
 Real-time statusline, live monitor, and session analytics for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
 ## Install
 
 ```bash
-brew tap slima4/claudeui
-brew install claudeui
+brew tap slima4/claude-tui
+brew install claude-tui
 ```
 
 Then run the setup to configure statusline, hooks, and slash commands:
@@ -22,9 +22,9 @@ claude-ui-setup
 - **claude-sessions** — browse, compare, resume, export sessions
 - **Statusline** — real-time status bar (configured via `claude-ui-setup`)
 - **Hooks** — file hotspots, dependency warnings, churn alerts
-- **Slash commands** — `/ui:session`, `/ui:cost`, `/ui:perf`, `/ui:context`
+- **Slash commands** — `/tui:session`, `/tui:cost`, `/tui:perf`, `/tui:context`
 
 ## More info
 
-- [Website](https://slima4.github.io/claudeui/)
-- [Repository](https://github.com/slima4/claudeui)
+- [Website](https://slima4.github.io/claude-tui/)
+- [Repository](https://github.com/slima4/claude-tui)
