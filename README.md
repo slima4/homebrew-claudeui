@@ -12,15 +12,15 @@ brew install claude-tui
 Then run the setup to configure statusline, hooks, and slash commands:
 
 ```bash
-claude-ui-setup
+claudetui setup
 ```
 
 ## What's included
 
-- **claude-ui-monitor** — live session dashboard
-- **claude-stats** — post-session analytics
-- **claude-sessions** — browse, compare, resume, export sessions
-- **Statusline** — real-time status bar (configured via `claude-ui-setup`)
+- **claudetui monitor** — live session dashboard
+- **claudetui stats** — post-session analytics
+- **claudetui sessions** — browse, compare, resume, export sessions
+- **Statusline** — real-time status bar (configured via `claudetui setup`)
 - **Hooks** — file hotspots, dependency warnings, churn alerts
 - **Slash commands** — `/tui:session`, `/tui:cost`, `/tui:perf`, `/tui:context`
 

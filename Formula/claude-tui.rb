@@ -14,41 +14,12 @@ class ClaudeTui < Formula
     libexec.install "install.sh"
     libexec.install "uninstall.sh" if File.exist?("uninstall.sh")
     libexec.install "claude-ui-mode.py" if File.exist?("claude-ui-mode.py")
+    libexec.install "claudetui.py" if File.exist?("claudetui.py")
 
-    # Create wrapper scripts
-    (bin/"claude-ui-mode").write <<~EOS
+    # Primary CLI command
+    (bin/"claudetui").write <<~EOS
       #!/bin/bash
-      exec python3 "#{libexec}/claude-ui-mode.py" "$@"
-    EOS
-
-
-    (bin/"claude-ui-monitor").write <<~EOS
-      #!/bin/bash
-      exec python3 "#{libexec}/claude-code-monitor/monitor.py" "$@"
-    EOS
-
-    (bin/"claude-stats").write <<~EOS
-      #!/bin/bash
-      exec python3 "#{libexec}/claude-code-session-stats/session-stats.py" "$@"
-    EOS
-
-    (bin/"claude-sessions").write <<~EOS
-      #!/bin/bash
-      exec python3 "#{libexec}/claude-code-session-manager/session-manager.py" "$@"
-    EOS
-
-    (bin/"claude-ui-setup").write <<~EOS
-      #!/bin/bash
-      # Run the installer to configure statusline, hooks, and commands
-      export INSTALL_DIR="#{HOMEBREW_PREFIX}/opt/claude-tui/libexec"
-      exec bash "#{libexec}/install.sh" "$@"
-    EOS
-
-    (bin/"claude-ui-uninstall").write <<~EOS
-      #!/bin/bash
-      # Clean Claude Code settings before brew uninstall
-      export INSTALL_DIR="#{HOMEBREW_PREFIX}/opt/claude-tui/libexec"
-      exec bash "#{libexec}/uninstall.sh" "$@"
+      exec python3 "#{libexec}/claudetui.py" "$@"
     EOS
   end
 
@@ -56,24 +27,24 @@ class ClaudeTui < Formula
     <<~EOS
       To complete setup (configure statusline, hooks, and slash commands):
 
-        claude-ui-setup
+        claudetui setup
 
       Before uninstalling, clean Claude Code settings first:
 
-        claude-ui-uninstall     # removes statusline, hooks, commands
+        claudetui uninstall     # removes statusline, hooks, commands
         brew uninstall claude-tui
 
       After setup:
 
         claude                  # statusline + hooks work automatically
-        claude-ui-monitor       # live dashboard in a second terminal
-        claude-stats            # post-session analytics
-        claude-sessions list    # browse all sessions
-        claude-ui-mode custom   # configure statusline components
+        claudetui monitor       # live dashboard in a second terminal
+        claudetui stats         # post-session analytics
+        claudetui sessions list # browse all sessions
+        claudetui mode custom   # configure statusline components
     EOS
   end
 
   test do
-    assert_match "usage", shell_output("#{bin}/claude-sessions 2>&1", 2)
+    assert_match "claudetui", shell_output("#{bin}/claudetui --version 2>&1")
   end
 end
